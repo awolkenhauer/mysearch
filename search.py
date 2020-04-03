@@ -4,14 +4,13 @@ import inquirer
 search_term = input("Enter the search term: ") 
 
 
-
-questions = [
-  inquirer.List('size',
-                message="What size do you need?",
-                choices=['Jumbo', 'Large', 'Standard', 'Medium', 'Small', 'Micro'],
+question = [
+  inquirer.List('search_method',
+                message="Select a search method:",
+                choices=['String Match', 'Regular Expression', 'Indexed'],
             ),
 ]
-answers = inquirer.prompt(questions)
+answer = inquirer.prompt(question)
 
 
 
