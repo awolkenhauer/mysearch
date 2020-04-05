@@ -40,7 +40,7 @@ if answer["search_method"] == "String Match":
 elif answer["search_method"] == "Regular Expression":
     result = reg_search(search_term, file_list) 
 elif answer["search_method"] == "Indexed":
-    result = index_search(search_term, file_list) 
+    result = index_search(search_term, file_list)
 else:
     print(answer["search_method"] + "is not a valid selection")
 
@@ -48,18 +48,18 @@ end = timer()
 
 elsapsed_time = end - start
 
-os.system('clear')
+#os.system('clear')
 
-print("The results of the", answer["search_method"].lower(), "search are:")
+#print("The results of the", answer["search_method"].lower(), "search are:")
 
 print()
 
-for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
-    file_name = key.split('/')
-    print(file_name[1], "-", value)
-    print()
+#for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
+#    file_name = key.split('/')
+#    print(file_name[1], "-", value)
+#    print()
 
-print("Elapsed Time: " + str(elsapsed_time) + " MS") 
+#print("Elapsed Time: " + str(elsapsed_time) + " MS") 
 
 print()
   
