@@ -1,7 +1,10 @@
 def string_search(search_term, file_list):
+    word_count = {}
     count = 0
     for text in file_list:
-        with open(text.lower(), 'r') as fp:
-            for line in fp:
+        with open(text.lower(), 'r') as file_input:
+            for line in file_input:
+                line = line.lower()
                 count += line.count(search_term)
-    return count
+                word_count[text] = count
+    return word_count
