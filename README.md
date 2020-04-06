@@ -18,7 +18,7 @@ mysearch is a python application for searching for a specific word/phrase/regex 
 
 1. Run `python main.py` to start the application.
 
-##Roadmap
+## Roadmap
 
 * Modify search indexing to accept phrases. (Whoosh?)
 * Modify search indexing to store index for repeat searching.
