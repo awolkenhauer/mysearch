@@ -2,6 +2,9 @@ import hashedindex
 import re
 
 def index_search(search_term, file_list):
+    
+    word_count = {}
+    
     inverted_index = hashedindex.HashedIndex()
 
     for text in file_list:
@@ -10,5 +13,9 @@ def index_search(search_term, file_list):
             file_name = text.split('/')
             for term in clean_document.split():
                 inverted_index.add_term_occurrence(term, file_name[1])
-        inverted_index.items()
-    return
+
+    result = inverted_index.get_documents(search_term)
+    for key, value in result.items():
+        path = "sample_text/" + key
+        word_count[path] = value
+    return word_count

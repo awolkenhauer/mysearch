@@ -1,13 +1,10 @@
 import os
 import inquirer
 from operator import itemgetter
-from stringsearch import string_search
-from regsearch import reg_search
-from indexsearch import index_search
 from timer import timer
+from helper import string_search, reg_search, index_search
 
 #Gather files to be searched
-
 directory = 'sample_text/'
 
 file_list = []
@@ -33,8 +30,10 @@ question = [
 
 answer = inquirer.prompt(question)
 
+#Start timer
 start = timer()
 
+#Search
 if answer["search_method"] == "String Match":
     result = string_search(search_term, file_list)
 elif answer["search_method"] == "Regular Expression":
@@ -44,22 +43,24 @@ elif answer["search_method"] == "Indexed":
 else:
     print(answer["search_method"] + "is not a valid selection")
 
+#End Timer
 end = timer()
 
+#Print Results
 elsapsed_time = end - start
 
-#os.system('clear')
+os.system('clear')
 
-#print("The results of the", answer["search_method"].lower(), "search are:")
+print("The results of the", answer["search_method"].lower(), "search are:")
 
 print()
 
-#for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
-#    file_name = key.split('/')
-#    print(file_name[1], "-", value)
-#    print()
+for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
+    file_name = key.split('/')
+    print(file_name[1], "-", value)
+    print()
 
-#print("Elapsed Time: " + str(elsapsed_time) + " MS") 
+print("Elapsed Time: " + str(elsapsed_time) + " MS") 
 
 print()
   
