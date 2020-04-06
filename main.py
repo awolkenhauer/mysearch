@@ -1,4 +1,5 @@
 import os
+import re
 import inquirer
 from operator import itemgetter
 from timer import timer
@@ -17,8 +18,8 @@ search_term = ""
 
 #Take in user data
 while len(search_term) is 0:
-    search_term = input("Enter the search term: ").lower()
-    print("Please enter a valid search parameter")
+    search_term = input("Enter the search term: ")
+    print(search_term)
 
 question = [
   inquirer.List('search_method',
@@ -35,10 +36,12 @@ start = timer()
 
 #Search
 if answer["search_method"] == "String Match":
+    search_term = re.sub('[^a-zA-Z0-9\n\s]', '', search_term.lower())
     result = string_search(search_term, file_list)
 elif answer["search_method"] == "Regular Expression":
     result = reg_search(search_term, file_list) 
 elif answer["search_method"] == "Indexed":
+    search_term = re.sub('[^a-zA-Z0-9\n\s]', '', search_term.lower())
     result = index_search(search_term, file_list)
 else:
     print(answer["search_method"] + "is not a valid selection")
@@ -49,7 +52,7 @@ end = timer()
 #Print Results
 elsapsed_time = end - start
 
-os.system('clear')
+#os.system('clear')
 
 print("The results of the", answer["search_method"].lower(), "search are:")
 
