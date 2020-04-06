@@ -10,10 +10,13 @@ def index_search(search_term, file_list):
             file_name = text.split('/')
             for term in clean_document.split():
                 inverted_index.add_term_occurrence(term, file_name[1])
-    result = inverted_index.get_documents(search_term)
-    for key, value in result.items():
-        path = "sample_text/" + key
-        word_count[path] = value
+        try:
+            result = inverted_index.get_documents(search_term)
+            for key, value in result.items():
+                word_count[text] = value
+        except IndexError:
+            word_count[text] = 0
+            continue
     return word_count
 
 def reg_search(search_term, file_list):

@@ -52,7 +52,7 @@ end = timer()
 #Print Results
 elsapsed_time = end - start
 
-#os.system('clear')
+os.system('clear')
 
 print("The results of the", answer["search_method"].lower(), "search are:")
 
