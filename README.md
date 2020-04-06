@@ -1,6 +1,6 @@
 # Case Study: Document Search
 
-mysearch is a python application for searching for specific words/phrase/regex in documents and then counts the results
+mysearch is a python application for searching for a specific word/phrase/regex and then counting the results.
 
 ## Requirements
 
@@ -18,7 +18,7 @@ mysearch is a python application for searching for specific words/phrase/regex i
 
 1. Run `python main.py` to start the application.
 
-##Roadmap
+## Roadmap
 
 * Modify search indexing to accept phrases. (Whoosh?)
 * Modify search indexing to store index for repeat searching.
