@@ -23,6 +23,7 @@ mysearch is a python application for searching for a specific word/phrase/regex 
 * Modify search indexing to accept phrases. (Whoosh?)
 * Modify search indexing to store index for repeat searching.
 * Add additional error handling (ex. Bad Regex)
+* Automate testing
 
 ## Contributing
 
