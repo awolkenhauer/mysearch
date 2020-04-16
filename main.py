@@ -1,13 +1,11 @@
 import os
+import re
 import inquirer
 from operator import itemgetter
-from stringsearch import string_search
-from regsearch import reg_search
-from indexsearch import index_search
 from timer import timer
+from helper import string_search, reg_search, index_search
 
 #Gather files to be searched
-
 directory = 'sample_text/'
 
 file_list = []
@@ -20,8 +18,8 @@ search_term = ""
 
 #Take in user data
 while len(search_term) is 0:
-    search_term = input("Enter the search term: ").lower()
-    print("Please enter a valid search parameter")
+    search_term = input("Enter the search term: ")
+    print(search_term)
 
 question = [
   inquirer.List('search_method',
@@ -33,33 +31,39 @@ question = [
 
 answer = inquirer.prompt(question)
 
+#Start timer
 start = timer()
 
+#Search
 if answer["search_method"] == "String Match":
+    search_term = re.sub('[^a-zA-Z0-9\n\s]', '', search_term.lower())
     result = string_search(search_term, file_list)
 elif answer["search_method"] == "Regular Expression":
     result = reg_search(search_term, file_list) 
 elif answer["search_method"] == "Indexed":
+    search_term = re.sub('[^a-zA-Z0-9\n\s]', '', search_term.lower())
     result = index_search(search_term, file_list)
 else:
     print(answer["search_method"] + "is not a valid selection")
 
+#End Timer
 end = timer()
 
+#Print Results
 elsapsed_time = end - start
 
-#os.system('clear')
+os.system('clear')
 
-#print("The results of the", answer["search_method"].lower(), "search are:")
+print("The results of the", answer["search_method"].lower(), "search are:")
 
 print()
 
-#for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
-#    file_name = key.split('/')
-#    print(file_name[1], "-", value)
-#    print()
+for key, value in sorted(result.items(), key = itemgetter(1), reverse = True):
+    file_name = key.split('/')
+    print(file_name[1], "-", value)
+    print()
 
-#print("Elapsed Time: " + str(elsapsed_time) + " MS") 
+print("Elapsed Time: " + str(elsapsed_time) + " MS") 
 
 print()
   
